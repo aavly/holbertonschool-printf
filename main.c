@@ -58,5 +58,8 @@ int main(void)
 	  _printf("There is %d bytes in %s KB\n", 1024, "Hello");
         printf("There is %d bytes in %s KB\n", 1024, "Hello");
 	
-    return (0);
+    _printf("%c\n", 'S');
+    printf("%c\n", 'S');
+	
+	return (0);
 }

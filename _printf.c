@@ -49,9 +49,9 @@ int _printf(const char *format, ...)
 			{
 				case 'c':
 					c = (char)va_arg(args, int);
-					/*write(1, &c, 1); */
-					/*count++; */
-					count = write_function(&c, 1, count);
+					write(1, &c, 1);
+					count++;
+					/*count = write_function(&c, 1, count); */
 					break;
 				case 's':
 					s = va_arg(args, char*);
