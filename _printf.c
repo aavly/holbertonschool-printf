@@ -1,130 +1,112 @@
 #include "main.h"
-
-int _putchar(char c);
-void _puts(char *str);
-int _strlen(char *s);
-
-/**
- * _printf - function to process the argument based format
- *
- * @format : char array indicating the format of the argument
- * Return: integer value of the total of char in argument
- */
+#include <stdarg.h>
+#include <stddef.h>
+#include <unistd.h>
+#include <stdlib.h>
 
 int _printf(const char *format, ...)
 {
-	int count; /* no. of characters to be return */
-	/* int loop_count;  counter for while loop */
-	/*int length; length of string char *s */
+	int flag = 0, count = 0;
+	va_list args;
+	char c;
 	char *s;
 	int i;
-	va_list printList;
-
-	i = 0; /*counter for *format */
-	count = 0; /* initalize count */
-
-	va_start(printList, format); /* intializing printList with last fixed argument being format */
-
-	/*s = va_arg(printList, char *);*/
+	int temp_num, digit = 0;
+	char *num_array;
+	int j;
 	
+	va_start(args, format);
 
-	while (format && format[i]) /* if format and format[i] are valid */
-	{	
-		/*if (format[i] == '%' && format[i+1] != NULL )  % operand found and format[i+1] is not NULL*/
-		/*{ */ 	
-			/*i = 1;   increment i */
-
-			/*if (format[i] == 'c' || format[i] == 's')  if 'c' or 's' found in format[i] */
-			switch (format[i])
-			{	case ('%'):	/* % operand detected */
-						i++; /* increment i counter to read next array in format */
-						break;				
-						
-				case ('c'): 	/* single char detected */
-						s[0] = va_arg(printList, int);
-						_putchar(s[0]); /* obtained the argument value */
-						/*_putchar('\n');*/
+	while (format != NULL && format[flag] != '\0')
+	{
+		if (format[flag] == '%')
+		{
+			flag++;
+			switch (format[flag])
+			{
+				case 'c':
+					c = (char)va_arg(args, int);
+					write(1, &c, 1);
+					count++;
+					break;
+				case 's':
+					s = va_arg(args, char*);
+					if (s == NULL)
+					{
+						s = "(null)";
+					}
+					while (*s != '\0')
+					{
+						write(1, s, 1);
+						s++;
+						count++;
+					}
+					break;
+				case '%':
+					write(1, "%", 1);
+					count++;
+					break;
+				case 'i':
+				case 'd':
+					i = va_arg(args, int);
+					temp_num = i;
+					if (i == 0)
+					{
+						write(1, "0", 1);
 						count++;
 						break;
+					}
+					if (i < 0)
+					{
+						write(1, "-", 1);
+						count++;
+						temp_num = -temp_num;
+					}
+					
+					temp_num = i;
+					while (temp_num != 0)
+					{
+						temp_num = temp_num / 10;
+						digit++;
+					}
+					
+					num_array = malloc(digit * sizeof(char));
+					if (num_array == NULL)
+					{
+						return (-1);
+					}
+					temp_num = i < 0 ? -i : i;
+					j = 0;
+					while (temp_num != 0)
+					{
+						num_array[j] = (char)(temp_num % 10 + '0');
+						j++;
+						temp_num /= 10;
+					}
+					
+					for (j = digit - 1; j >= 0; j--)
+					{
+						write(1, &num_array[j], 1);
+						count++;
+					}
+					
+					free(num_array);
+					break;
 
-				case ('s'):	/* string is detected */
-						s = va_arg(printList, char *); /* obtained argument value */
-						if (!s)
-							s = "(nil)";
-						/*printf("%s", strrr);*/
-						while (*s) /* s not empty */
-						{	
-							_putchar(*s);
-							s++; /* go to next array in s */
-							count++;
-						}
-						break;
-
-				default : 	/* none detected thus just print the value of format[i] */
-						_putchar(format[i]);
-						break;
-
-			} /* end swutch case */
-			
-			i++;	
-	} /* end while */
-
-	va_end(printList); /* end va variable PrintList */
-	return count; /* return count value */
-} /*end _printf */
-
-
-/**
- * _putchar - writes the character c to stdout
- * @c: The character to print
- *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
- */
-int _putchar(char c)
-{
-        return (write(1, &c, 1));
-}
-
-/**
- * _puts - display string by input
- * @str  : string pointer str
- *
- * Return: none
- *
- * Example : _puts("Hello World")
- */
-
-void _puts(char *str)
-{
-        int length, count;
-
-        length = _strlen(str);
-
-        for (count = 0; count < length; count++)
-        {
-                _putchar(str[count]);
-        }
-        _putchar('\n');
-}
-
-/**
- * _strlen - check the length of string
- * function declaration performed in main.h
- * @s  : char pointer s
- *
- * Return: integer value of length of *s
- *
- * Example : _strlen(aa)
- */
-
-int _strlen(char *s)
-{
-        int i = 0;
-
-        while (s[i] != '\0')
-        {
-                i++;
-        }
-        return (i);
+				default:
+					write(1, "%", 1);
+					write(1, &format[flag], 1);
+					count += 2;
+					break;
+			}
+		}
+		else
+		{
+			write(1, &format[flag], 1);
+			count++;
+		}
+		flag++;
+	}
+	va_end(args);
+	return (count);
 }
