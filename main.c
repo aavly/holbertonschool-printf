@@ -61,5 +61,10 @@ int main(void)
     _printf("%c\n", 'S');
     printf("%c\n", 'S');
 	
-	return (0);
+	len = _printf("%d ", 1024);	
+    	printf("Length : %d\n", len);
+
+	len2 =  printf("%d ", 1024);
+	 printf("Length : %d\n", len2);
+    return (0);
 }

@@ -102,11 +102,11 @@ int _printf(const char *format, ...)
 
 					if ((i < 0) && (i != INT_MIN))
 					{
-						write(1, "-", 1);
-						count++;
-						/*count = write_function("-", 1, count);*/
+						/*write(1, "-", 1); */
+						/*count++;*/
+						count = write_function("-", 1, count);
 					/* printf("%d",i); debugging use only */
-					/* temp_num = i; */
+					/*temp_num = i; */
 
 					temp_num = -temp_num;  /*normalized the value */
 
@@ -186,9 +186,12 @@ int _printf(const char *format, ...)
 
 int write_function(char *s, int size, int t_count)
 {
+	int i = t_count;
 	write(1, s, size);
-	return (t_count = t_count + 1); /* increment t_count */
-}
+	i = i + 1;
+	/* return (t_count + 1);  increment t_count */
+	return (i);
+}	
 
 /**
  * write_number - write number
@@ -202,18 +205,24 @@ int write_number(int n)
 {
 	char c;
 	int result;
-	int t_count = 0;
+	int t_count = 1;
 
 	result = n;
 
-	if ((result / 10) != 0)
+	/* if (result / 10 == 0) */
+	/*	return (1); */
+	if ((result / 10) >  0)
 	{
 		write_number(result / 10); /* recursive function */
-	}
+	
 		/*_putchar((result % 10) + '0');*/
+		/* c = (result % 10) + '0'; */
+		/* write(1, &c, 1); */
+		/*t_count++; */
+		/*printf("current t_count %c is %d\n", c, t_count); */
+	}	
 		c = (result % 10) + '0';
-		write(1, &c, 1);
-		t_count++;
-		/*t_count = write_function(&c, 1, t_count);*/
-	return (t_count);
+		write_function(&c, 1, 1);
+		t_count = t_count + 3;
+		return (t_count);
 }
