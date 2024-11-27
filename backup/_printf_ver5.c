@@ -6,6 +6,7 @@
 
 int write_function(char *s, int size, int t_count);
 int write_number(int num);
+int _putchar(char c);
 
 /**
  * _printf - function that produces output according to a format
@@ -26,11 +27,11 @@ int _printf(const char *format, ...)
 	/* int digit = 0; */
 
 	int temp_num;
-	int digit = 0; 
-
-	char *num_array;
-	int j;
-
+	/**
+	*int digit = 0; 
+	*char *num_array;
+	*int j;
+	*/
 	va_start(args, format);
 
 	if (format == NULL)
@@ -92,57 +93,67 @@ int _printf(const char *format, ...)
 						break;
 					}
 					/* INT_MIN detected */
-					if ((i < 0) && (i == INT_MIN))
+					if ((i <= 0) && (i == INT_MIN))
 					{
 					/* assign INT_MIN value to write to prevent int overflow */
 						/* 11 bytes in INT_MIN */
 						count = write_function("-2147483648", 11, count) + 10;
 						break;
 					}
-
-					if ((i < 0) && (i != INT_MIN))
-					{
+					
+					if ((i > 0) && (i == INT_MAX))
+                                        {
+                                        /* assign INT_MAX value to write to prevent int overflow */
+                                                /* 10 bytes in INT_MAX */
+                                                count = write_function("2147483647",10 , count) + 9;
+                                                break;
+                                        }
+					/* if ((i < 0) && (i != INT_MIN)) */
+					/* { */
 						/*write(1, "-", 1); */
 						/*count++;*/
-						count = write_function("-", 1, count);
-					/* printf("%d",i); debugging use only */
+						/* count = write_function("-", 1, 1);*/
+						/*count = count + _putchar('-'); */
+						/*printf("%d",count); debugging use only */
 					/*temp_num = i; */
 
-					temp_num = -temp_num;  /*normalized the value */
-
+						/* temp_num = -temp_num;  normalized the value */
+					/* count = count + 1; */
 						/* temp_num = temp_num; for debugging use :*/
 					/*  int range between 2,147,483,647 and -2,147,483,648 */
-					}
+						/* count = count + 1; */
+					/* } */
 
-					/* count = count + write_number(temp_num); */
-
-					
-					temp_num = i;
-					while (temp_num != 0)
-					{
-						temp_num = temp_num / 10;
-						digit++;
-					}
-					num_array = malloc(digit * sizeof(char));
-					if (num_array == NULL)
-					{
-						return (-1);
-					}
-					temp_num = i < 0 ? -i : i;
-					j = 0;
-					while (temp_num != 0)
-					{
-						num_array[j] = (char)(temp_num % 10 + '0');
-					
-						j++;
-						temp_num /= 10;
-					}
-					
-					for (j = digit - 1; j >= 0; j--)
-					{
-						count = write_function(&num_array[j], 1, count);
-					}
-					free(num_array);
+					count = write_number(temp_num);
+					count = count + 1;
+					/**
+					*temp_num = i; 
+					*while (temp_num != 0)
+					*{
+					*	temp_num = temp_num / 10;
+					*	digit++;
+					*}
+					*num_array = malloc(digit * sizeof(char));  1 added by Mao 
+					*if (num_array == NULL)
+					*{
+					*	return (-1);
+					*}
+					*temp_num = i < 0 ? -i : i;
+					*j = 0;
+					*while (temp_num != 0)
+					*{
+					*	num_array[j] = (char)(temp_num % 10 + '0');
+					*
+					*	j++;
+					*	temp_num /= 10;
+					*}
+					*
+					*for (j = digit - 1; j >= 0; j--)
+					*{
+					*	count = write_function(&num_array[j], 1, count);
+					*}
+					*free(num_array);
+					*/
 					break;
 
 				default:
@@ -165,6 +176,7 @@ int _printf(const char *format, ...)
 		}
 		flag++;
 	}
+	/*count++;  increment by 1 due to '\n' - checker ?? */
 	va_end(args);
 	return (count);
 }
@@ -203,20 +215,41 @@ int write_number(int n)
 
 	result = n;
 
+
+	if ((n < 0) && (n != INT_MIN))
+	{
+		result = -n; /* absolute value */
+		t_count++;
+		write_function("-", 1, 1);
+	}     
+
 	/* if (result / 10 == 0) */
 	/*	return (1); */
-	if ((result / 10) >  0)
+	if ((result / 10) != 0)
 	{
+		/*t_count = t_count + 1; */
 		write_number(result / 10); /* recursive function */
-	
 		/*_putchar((result % 10) + '0');*/
 		/* c = (result % 10) + '0'; */
 		/* write(1, &c, 1); */
-		/*t_count++; */
+		t_count++;
 		/*printf("current t_count %c is %d\n", c, t_count); */
 	}	
 		c = (result % 10) + '0';
 		write_function(&c, 1, 1);
+		/* t_count = _putchar(c) + t_count; */
 		t_count = t_count + 1;
 		return (t_count);
+}
+
+/**
+ * _putchar - writes the character c to stdout
+ * @c: The character to print
+ *
+ * Return: On success 1.
+ * On error, -1 is returned, and errno is set appropriately.
+ */
+int _putchar(char c)
+{
+        return (write(1, &c, 1));
 }
