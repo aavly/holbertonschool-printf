@@ -68,9 +68,9 @@ int _printf(const char *format, ...)
 					}
 					break;
 				case '%':
-					/* write(1, "%", 1); */
-					/* count++; */
-					count = write_function("%", 1, count);
+					write(1, "%", 1);
+					count++;
+					/* count = write_function("%", 1, count); */
 					break;
 				case 'i':
 				case 'd':
