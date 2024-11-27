@@ -179,7 +179,7 @@ int _printf(const char *format, ...)
 int write_function(char *s, int size, int t_count)
 {
 	write(1, s, size);
-	return (t_count++); /* increment t_count */
+	return (t_count = t_count + 1); /* increment t_count */
 }
 
 /**
