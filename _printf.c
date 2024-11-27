@@ -150,8 +150,8 @@ int _printf(const char *format, ...)
 					/*count = write_function("%", 1, count); */
 
 					/*format is const char thus can't use write_function */
-					write(1, &format[flag], 1);
-					count++;
+					/*write(1, &format[flag], 1); */
+					/*count++;*/
 					break;
 			}
 		}
