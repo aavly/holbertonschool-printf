@@ -38,12 +38,20 @@ int _printf(const char *format, ...)
 		/*count = write_function("\n", 1, count);*/
 		return (-1); /* terminate with count = 0 */
 	}
-	while (format != NULL && format[flag] != '\0')
+	while (format[flag] != '\0')
 	{
-		/* make sure the format[] after % detected is not empty */
-		if ((format[flag] == '%') && (format[flag + 1]))
-		/* if (format[flag] == '%') */
+		if (format[flag] == '%')
 		{
+			if (format[flag + 1] == '\0')
+			{
+				va_end(args);
+				return (-1);
+			}
+
+		/* make sure the format[] after % detected is not empty */
+		/*if ((format[flag] == '%') && (format[flag + 1])) */
+		/* if (format[flag] == '%') */
+		/* { */
 			flag++;
 			switch (format[flag])
 			{
