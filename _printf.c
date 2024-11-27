@@ -26,10 +26,10 @@ int _printf(const char *format, ...)
 	/* int digit = 0; */
 
 	int temp_num;
-	/* int digit = 0; removed by mao */
+	int digit = 0; 
 
-	/* char *num_array; removed by mao */
-	/* int j;  removed by mao */
+	char *num_array;
+	int j;
 
 	va_start(args, format);
 
@@ -114,41 +114,35 @@ int _printf(const char *format, ...)
 					/*  int range between 2,147,483,647 and -2,147,483,648 */
 					}
 
-					count = count + write_number(temp_num);
+					/* count = count + write_number(temp_num); */
 
-					/**
-					* temp_num = i;  remove by mao
-					* while (temp_num != 0)
-					* {
-					*	temp_num = temp_num / 10;
-					*	digit++;
-					*}
-					*
-					* num_array = malloc(digit * sizeof(char));
-					* if (num_array == NULL)
-					* {
-					*	return (-1);
-					* }
-					*
-					* temp_num = i < 0 ? -i : i;
-					* j = 0;
-					* while (temp_num != 0)
-					* {
-					*	num_array[j] = (char)(temp_num % 10 + '0');
-					*
-					*	j++;
-					*	temp_num /= 10;
-					* }
-					*
-					* for (j = digit - 1; j >= 0; j--)
-					*
-					* {
-					*
-					*	count = write_function(&num_array[j], 1, count);
-					* }
-					* free(num_array);
-					*/
-
+					
+					temp_num = i;
+					while (temp_num != 0)
+					{
+						temp_num = temp_num / 10;
+						digit++;
+					}
+					num_array = malloc(digit * sizeof(char));
+					if (num_array == NULL)
+					{
+						return (-1);
+					}
+					temp_num = i < 0 ? -i : i;
+					j = 0;
+					while (temp_num != 0)
+					{
+						num_array[j] = (char)(temp_num % 10 + '0');
+					
+						j++;
+						temp_num /= 10;
+					}
+					
+					for (j = digit - 1; j >= 0; j--)
+					{
+						count = write_function(&num_array[j], 1, count);
+					}
+					free(num_array);
 					break;
 
 				default:
@@ -223,6 +217,6 @@ int write_number(int n)
 	}	
 		c = (result % 10) + '0';
 		write_function(&c, 1, 1);
-		t_count = t_count + 3;
+		t_count = t_count + 1;
 		return (t_count);
 }
