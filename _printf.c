@@ -213,6 +213,7 @@ int write_number(int n)
 		/*_putchar((result % 10) + '0');*/
 		c = (result % 10) + '0';
 		write(1, &c, 1);
+		t_count++;
 		/*t_count = write_function(&c, 1, t_count);*/
 	return (t_count);
 }
