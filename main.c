@@ -13,6 +13,7 @@ int main(void)
     int len2;
     unsigned int ui;
     void *addr;
+     long int l;
 
     len = _printf("Let's try to printf a simple sentence.\n");
     len2 = printf("Let's try to printf a simple sentence.\n");
@@ -80,8 +81,14 @@ int main(void)
         len2 =  printf("%d ", INT_MAX);
          printf("Length : %d\n", len2);
 
-	 printf(" INT_MAX / 2 is %d", INT_MAX / 2);
+	 /*printf(" INT_MAX / 2 is %d", INT_MAX / 2); */
+	 
+	 l = -2147482625;
 
+	 len = _printf("%d ", l);
+	 printf("Length : %d\n", len);
+	 len2 = printf("%d ", l);
+         printf("Length : %d\n", len2);
 	 
 	 return (0);
 }
