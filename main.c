@@ -66,5 +66,14 @@ int main(void)
 
 	len2 =  printf("%d ", 1024);
 	 printf("Length : %d\n", len2);
-    return (0);
+    
+	 
+        len = _printf("%d ", -1024);
+        printf("Length : %d\n", len);
+
+        len2 =  printf("%d ", -1024);
+         printf("Length : %d\n", len2);
+
+	 
+	 return (0);
 }

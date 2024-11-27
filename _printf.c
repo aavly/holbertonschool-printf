@@ -93,7 +93,7 @@ int _printf(const char *format, ...)
 						break;
 					}
 					/* INT_MIN detected */
-					if ((i < 0) && (i == INT_MIN))
+					if ((i <= 0) && (i == INT_MIN))
 					{
 					/* assign INT_MIN value to write to prevent int overflow */
 						/* 11 bytes in INT_MIN */
@@ -101,22 +101,24 @@ int _printf(const char *format, ...)
 						break;
 					}
 
-					if ((i < 0) && (i != INT_MIN))
-					{
+					/* if ((i < 0) && (i != INT_MIN)) */
+					/* { */
 						/*write(1, "-", 1); */
 						/*count++;*/
-						count = write_function("-", 1, count);
-					/* printf("%d",i); debugging use only */
+						/* count = write_function("-", 1, 1);*/
+						/*count = count + _putchar('-'); */
+						/*printf("%d",count); debugging use only */
 					/*temp_num = i; */
 
-					temp_num = -temp_num;  /*normalized the value */
-
+						/* temp_num = -temp_num;  normalized the value */
+					/* count = count + 1; */
 						/* temp_num = temp_num; for debugging use :*/
 					/*  int range between 2,147,483,647 and -2,147,483,648 */
-					}
+						/* count = count + 1; */
+					/* } */
 
 					count = write_number(temp_num);
-					count++;
+					count = count + 1;
 					/**
 					*temp_num = i; 
 					*while (temp_num != 0)
@@ -167,6 +169,7 @@ int _printf(const char *format, ...)
 		}
 		flag++;
 	}
+	/*count++;  increment by 1 due to '\n' - checker ?? */
 	va_end(args);
 	return (count);
 }
@@ -205,9 +208,17 @@ int write_number(int n)
 
 	result = n;
 
+
+	if ((n < 0) && (n != INT_MIN))
+	{
+		result = -n; /* absolute value */
+		t_count++;
+		write_function("-", 1, 1);
+	}     
+
 	/* if (result / 10 == 0) */
 	/*	return (1); */
-	if ((result / 10) >  0)
+	if ((result / 10))
 	{
 		t_count++;
 		write_number(result / 10); /* recursive function */
@@ -220,9 +231,9 @@ int write_number(int n)
 	}	
 		c = (result % 10) + '0';
 		/*write_function(&c, 1, 1);*/
-		_putchar(c);
+		t_count = _putchar(c) + t_count;
 		/*t_count = t_count + 1; */
-		return (t_count + 1);
+		return (t_count);
 }
 
 /**
