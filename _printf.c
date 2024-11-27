@@ -28,7 +28,7 @@ int _printf(const char *format, ...)
 
 	int temp_num;
 	/**
-	*int digit = 0; 
+	*int digit = 0;
 	*char *num_array;
 	*int j;
 	*/
@@ -58,9 +58,7 @@ int _printf(const char *format, ...)
 			{
 				case 'c':
 					c = (char)va_arg(args, int);
-					write(1, &c, 1);
-					count++;
-					/*count = write_function(&c, 1, count); */
+					count = write_function(&c, 1, count);
 					break;
 				case 's':
 					s = va_arg(args, char*);
@@ -70,44 +68,40 @@ int _printf(const char *format, ...)
 					}
 					while (*s != '\0')
 					{
-						write(1, s, 1);
-						count++;
-						/*count = write_function(s, 1, count);*/
+						count = write_function(s, 1, count);
 						s++;
 					}
 					break;
 				case '%':
-					write(1, "%", 1);
-					count++;
-					/* count = write_function("%", 1, count); */
+					count = write_function("%", 1, count);
 					break;
 				case 'i':
 				case 'd':
 					i = va_arg(args, int);
-					temp_num = i;
-					if (i == 0)
-					{
-						write(1, "0", 1);
-						count++;
+					count = write_number(i) + count;
+					break;
+					/*if (i == 0)*/
+					/*{*/
+						/*write(1, "0", 1);*/
+						/*count++;*/
 						/*count = write_function("0", 1, count); */
-						break;
-					}
+						/*break;*/
+					/*}*/
 					/* INT_MIN detected */
-					if ((i <= 0) && (i == INT_MIN))
-					{
+					/*if ((i <= 0) && (i == INT_MIN))*/
+					/*{*/
 					/* assign INT_MIN value to write to prevent int overflow */
 						/* 11 bytes in INT_MIN */
-						count = write_function("-2147483648", 11, count) + 10;
-						break;
-					}
-					
-					if ((i > 0) && (i == INT_MAX))
-                                        {
-                                        /* assign INT_MAX value to write to prevent int overflow */
-                                                /* 10 bytes in INT_MAX */
-                                                count = write_function("2147483647",10 , count) + 9;
-                                                break;
-                                        }
+						/*count = write_function("-2147483648", 11, count) + 10;*/
+						/*break;*/
+					/*}*/
+					/*if ((i > 0) && (i == INT_MAX))*/
+					/*{*/
+					/* assign INT_MAX value to write to prevent int overflow */
+					/* 10 bytes in INT_MAX */
+					/*count = write_function("2147483647",10 , count) + 9;*/
+					/* break;*/
+					/*}*/
 					/* if ((i < 0) && (i != INT_MIN)) */
 					/* { */
 						/*write(1, "-", 1); */
@@ -124,16 +118,16 @@ int _printf(const char *format, ...)
 						/* count = count + 1; */
 					/* } */
 
-					count = write_number(temp_num);
-					count = count + 1;
+					/*count = write_number(temp_num);*/
+					/*count = count + 1;*/
 					/**
-					*temp_num = i; 
+					*temp_num = i;
 					*while (temp_num != 0)
 					*{
 					*	temp_num = temp_num / 10;
 					*	digit++;
 					*}
-					*num_array = malloc(digit * sizeof(char));  1 added by Mao 
+					*num_array = malloc(digit * sizeof(char));  1 added by Mao
 					*if (num_array == NULL)
 					*{
 					*	return (-1);
@@ -154,13 +148,11 @@ int _printf(const char *format, ...)
 					*}
 					*free(num_array);
 					*/
-					break;
+					/*break;*/
 
 				default:
-					write(1, "%", 1);
-					write(1, &format[flag], 1);
-					count += 2;
-					/*count = write_function("%", 1, count); */
+					count = write_function("%", 1, count);
+					count = write_function(&format[flag], 1, count);
 
 					/*format is const char thus can't use write_function */
 					/*write(1, &format[flag], 1); */
@@ -170,9 +162,9 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
-			write(1, &format[flag], 1);
-			count++;
-			/*count = write_function(&format[flag], 1, count); */
+			/*write(1, &format[flag], 1);*/
+			/*count++;*/
+			count = write_function(&format[flag], 1, count);
 		}
 		flag++;
 	}
@@ -192,12 +184,9 @@ int _printf(const char *format, ...)
 
 int write_function(char *s, int size, int t_count)
 {
-	int i = t_count;
 	write(1, s, size);
-	i = i + 1;
-	/* return (t_count + 1);  increment t_count */
-	return (i);
-}	
+	return (t_count + 1);
+}
 
 /**
  * write_number - write number
@@ -210,36 +199,59 @@ int write_function(char *s, int size, int t_count)
 int write_number(int n)
 {
 	char c;
-	int result;
-	int t_count = 1;
+	int count = 0;
+	unsigned int num;
+	/* int result;*/
+	/*int t_count = 1;*/
 
-	result = n;
+	/*result = n;*/
 
 
-	if ((n < 0) && (n != INT_MIN))
-	{
-		result = -n; /* absolute value */
-		t_count++;
-		write_function("-", 1, 1);
-	}     
+	/*if ((n < 0) && (n != INT_MIN))*/
+	/*{*/
+		/*result = -n; absolute value*/
+		/*t_count++;*/
+		/*write_function("-", 1, 1);*/
+	/*}*/
 
 	/* if (result / 10 == 0) */
 	/*	return (1); */
-	if ((result / 10) != 0)
-	{
-		/*t_count = t_count + 1; */
-		write_number(result / 10); /* recursive function */
+	/*if ((result / 10) != 0)*/
+
+	/*{*/
+		/*t_count = t_count + 1;*/
+		/*write_number(result / 10);  recursive function*/
 		/*_putchar((result % 10) + '0');*/
-		/* c = (result % 10) + '0'; */
-		/* write(1, &c, 1); */
-		t_count++;
-		/*printf("current t_count %c is %d\n", c, t_count); */
-	}	
-		c = (result % 10) + '0';
-		write_function(&c, 1, 1);
-		/* t_count = _putchar(c) + t_count; */
-		t_count = t_count + 1;
-		return (t_count);
+		/*c = (result % 10) + '0';*/
+		/*write(1, &c, 1);*/
+		/*t_count++;*/
+		/*printf("current t_count %c is %d\n", c, t_count);*/
+	/*}*/
+		/*c = (result % 10) + '0';*/
+		/*write_function(&c, 1, 1);*/
+		/*t_count = _putchar(c) + t_count;*/
+		/*t_count = t_count + 1;*/
+		/*return (t_count);*/
+
+	if (n < 0)
+	{
+		count = write_function("-", 1 count);
+		num = -n;
+	}
+	else
+	{
+		num = n;
+	}
+
+	if (num / 10)
+	{
+		count += write_number(num / 10);
+	}
+
+	c = (num % 10) + '0';
+	count = write_function(&c, 1, count);
+
+	return (count);
 }
 
 /**
@@ -251,5 +263,5 @@ int write_number(int n)
  */
 int _putchar(char c)
 {
-        return (write(1, &c, 1));
+	return (write(1, &c, 1));
 }
