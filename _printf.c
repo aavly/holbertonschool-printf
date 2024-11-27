@@ -100,7 +100,14 @@ int _printf(const char *format, ...)
 						count = write_function("-2147483648", 11, count) + 10;
 						break;
 					}
-
+					
+					if ((i > 0) && (i == INT_MAX))
+                                        {
+                                        /* assign INT_MAX value to write to prevent int overflow */
+                                                /* 10 bytes in INT_MAX */
+                                                count = write_function("2147483647",10 , count) + 9;
+                                                break;
+                                        }
 					/* if ((i < 0) && (i != INT_MIN)) */
 					/* { */
 						/*write(1, "-", 1); */
@@ -218,21 +225,20 @@ int write_number(int n)
 
 	/* if (result / 10 == 0) */
 	/*	return (1); */
-	if ((result / 10))
+	if ((result / 10) != 0)
 	{
-		t_count++;
+		/*t_count = t_count + 1; */
 		write_number(result / 10); /* recursive function */
-	
 		/*_putchar((result % 10) + '0');*/
 		/* c = (result % 10) + '0'; */
 		/* write(1, &c, 1); */
-		/*t_count++; */
+		t_count++;
 		/*printf("current t_count %c is %d\n", c, t_count); */
 	}	
 		c = (result % 10) + '0';
-		/*write_function(&c, 1, 1);*/
-		t_count = _putchar(c) + t_count;
-		/*t_count = t_count + 1; */
+		write_function(&c, 1, 1);
+		/* t_count = _putchar(c) + t_count; */
+		t_count = t_count + 1;
 		return (t_count);
 }
 

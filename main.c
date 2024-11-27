@@ -73,6 +73,14 @@ int main(void)
 
         len2 =  printf("%d ", -1024);
          printf("Length : %d\n", len2);
+	
+	  len = _printf("%d ", INT_MAX);
+        printf("Length : %d\n", len);
+
+        len2 =  printf("%d ", INT_MAX);
+         printf("Length : %d\n", len2);
+
+	 printf(" INT_MAX / 2 is %d", INT_MAX / 2);
 
 	 
 	 return (0);
