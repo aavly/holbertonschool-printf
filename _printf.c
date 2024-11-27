@@ -86,12 +86,12 @@ int _printf(const char *format, ...)
 					temp_num = i;
 					if (i == 0)
 					{
-						/* write(1, "0", 1); */
-						/* count++; */
-						count = write_function("0", 1, count);
+						write(1, "0", 1);
+						count++;
+						/*count = write_function("0", 1, count); */
 						break;
 					}
-					 /* INT_MIN detected */
+					/* INT_MIN detected */
 					if ((i < 0) && (i == INT_MIN))
 					{
 					/* assign INT_MIN value to write to prevent int overflow */
@@ -102,11 +102,11 @@ int _printf(const char *format, ...)
 
 					if ((i < 0) && (i != INT_MIN))
 					{
-						/* write(1, "-", 1); */
-						/* count++;	*/
-						count = write_function("-", 1, count);
+						write(1, "-", 1);
+						count++;
+						/*count = write_function("-", 1, count);*/
 					/* printf("%d",i); debugging use only */
-					/* temp_num = i;  */
+					temp_num = i;
 
 					temp_num = -temp_num;  /*normalized the value */
 
