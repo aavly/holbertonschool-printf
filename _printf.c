@@ -4,7 +4,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-int write_function(char *s, int size, int t_count);
+int write_function(const char *s, int size, int t_count);
 int write_number(int num);
 int _putchar(char c);
 
@@ -26,7 +26,7 @@ int _printf(const char *format, ...)
 	/* unsigned int i, temp_num;  unsigned int to acoomodate INT_MIN */
 	/* int digit = 0; */
 
-	int temp_num;
+	/*int temp_num;*/
 	/**
 	*int digit = 0;
 	*char *num_array;
@@ -182,7 +182,7 @@ int _printf(const char *format, ...)
  * Return: incremented tcount by 1
  */
 
-int write_function(char *s, int size, int t_count)
+int write_function(const char *s, int size, int t_count)
 {
 	write(1, s, size);
 	return (t_count + 1);
@@ -235,7 +235,7 @@ int write_number(int n)
 
 	if (n < 0)
 	{
-		count = write_function("-", 1 count);
+		count = write_function("-", 1, count);
 		num = -n;
 	}
 	else
