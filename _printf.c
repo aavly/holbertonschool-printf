@@ -144,10 +144,10 @@ int _printf(const char *format, ...)
 					break;
 
 				default:
-					/*write(1, "%", 1); */
-					/*write(1, &format[flag], 1); */
-					/*count += 2; */
-					count = write_function("%", 1, count);
+					write(1, "%", 1);
+					write(1, &format[flag], 1);
+					count += 2;
+					/*count = write_function("%", 1, count); */
 
 					/*format is const char thus can't use write_function */
 					write(1, &format[flag], 1);
