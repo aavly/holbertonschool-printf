@@ -6,6 +6,7 @@
 
 int write_function(char *s, int size, int t_count);
 int write_number(int num);
+int _putchar(char c);
 
 /**
  * _printf - function that produces output according to a format
@@ -26,11 +27,11 @@ int _printf(const char *format, ...)
 	/* int digit = 0; */
 
 	int temp_num;
-	int digit = 0; 
-
-	char *num_array;
-	int j;
-
+	/**
+	*int digit = 0; 
+	*char *num_array;
+	*int j;
+	*/
 	va_start(args, format);
 
 	if (format == NULL)
@@ -114,35 +115,36 @@ int _printf(const char *format, ...)
 					/*  int range between 2,147,483,647 and -2,147,483,648 */
 					}
 
-					/* count = count + write_number(temp_num); */
-
-					
-					temp_num = i;
-					while (temp_num != 0)
-					{
-						temp_num = temp_num / 10;
-						digit++;
-					}
-					num_array = malloc(digit * sizeof(char));
-					if (num_array == NULL)
-					{
-						return (-1);
-					}
-					temp_num = i < 0 ? -i : i;
-					j = 0;
-					while (temp_num != 0)
-					{
-						num_array[j] = (char)(temp_num % 10 + '0');
-					
-						j++;
-						temp_num /= 10;
-					}
-					
-					for (j = digit - 1; j >= 0; j--)
-					{
-						count = write_function(&num_array[j], 1, count);
-					}
-					free(num_array);
+					count = write_number(temp_num);
+					count++;
+					/**
+					*temp_num = i; 
+					*while (temp_num != 0)
+					*{
+					*	temp_num = temp_num / 10;
+					*	digit++;
+					*}
+					*num_array = malloc(digit * sizeof(char));  1 added by Mao 
+					*if (num_array == NULL)
+					*{
+					*	return (-1);
+					*}
+					*temp_num = i < 0 ? -i : i;
+					*j = 0;
+					*while (temp_num != 0)
+					*{
+					*	num_array[j] = (char)(temp_num % 10 + '0');
+					*
+					*	j++;
+					*	temp_num /= 10;
+					*}
+					*
+					*for (j = digit - 1; j >= 0; j--)
+					*{
+					*	count = write_function(&num_array[j], 1, count);
+					*}
+					*free(num_array);
+					*/
 					break;
 
 				default:
@@ -207,6 +209,7 @@ int write_number(int n)
 	/*	return (1); */
 	if ((result / 10) >  0)
 	{
+		t_count++;
 		write_number(result / 10); /* recursive function */
 	
 		/*_putchar((result % 10) + '0');*/
@@ -216,7 +219,20 @@ int write_number(int n)
 		/*printf("current t_count %c is %d\n", c, t_count); */
 	}	
 		c = (result % 10) + '0';
-		write_function(&c, 1, 1);
-		t_count = t_count + 1;
-		return (t_count);
+		/*write_function(&c, 1, 1);*/
+		_putchar(c);
+		/*t_count = t_count + 1; */
+		return (t_count + 1);
+}
+
+/**
+ * _putchar - writes the character c to stdout
+ * @c: The character to print
+ *
+ * Return: On success 1.
+ * On error, -1 is returned, and errno is set appropriately.
+ */
+int _putchar(char c)
+{
+        return (write(1, &c, 1));
 }
