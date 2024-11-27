@@ -34,7 +34,7 @@ int _printf(const char *format, ...)
 	va_start(args, format);
 
 	if (format == NULL)
-	{	write(1, "\n", 1);
+	{	/* write(1, "\n", 1); */
 		/*count = write_function("\n", 1, count);*/
 		return (0); /* terminate with count = 0 */
 	}
