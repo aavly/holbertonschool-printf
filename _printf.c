@@ -61,9 +61,9 @@ int _printf(const char *format, ...)
 					}
 					while (*s != '\0')
 					{
-						/* write(1, s, 1); */
-						/* count++; */
-						count = write_function(s, 1, count);
+						write(1, s, 1);
+						count++;
+						/*count = write_function(s, 1, count);*/
 						s++;
 					}
 					break;
