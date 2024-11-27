@@ -106,7 +106,7 @@ int _printf(const char *format, ...)
 						count++;
 						/*count = write_function("-", 1, count);*/
 					/* printf("%d",i); debugging use only */
-					temp_num = i;
+					/* temp_num = i; */
 
 					temp_num = -temp_num;  /*normalized the value */
 
