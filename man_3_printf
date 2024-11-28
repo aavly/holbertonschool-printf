@@ -61,10 +61,10 @@ Example usage of
 #include "main.h"
 int main(void)
 {
-    _printf("Character: %c\\n", 'A':);
-    _printf("String: %s\\n", "Hello, World!");
-    _printf("Integer: %d\\n", 123);
-    _printf("Percent: %%\\n");
+    _printf("Character: %c\n", 'A':);
+    _printf("String: %s\n", "Hello, World!");
+    _printf("Integer: %d\n", 123);
+    _printf("Percent: %%\n");
     return 0;
 }
 
