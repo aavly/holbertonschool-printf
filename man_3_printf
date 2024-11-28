@@ -5,7 +5,7 @@
 _printf \- formatted output conversion.
 
 .SH SYNOPSIS
-.B #include <stdarg.h>
+.B #include "main.h"
 .br
 .BI "int _printf(const char *" format ", ...);"
 
@@ -14,9 +14,10 @@ The
 .B _printf
 function produces output according to a specified format, similar to the standard
 .B printf
-function in the C library.The
+function in the C library.
 .B format
-string specifies the output format and may include format specifiers, which are replaced by the values specified in subsequent arguments. Text in the format string is copied to the output as-is.
+string specifies the output format and may include format specifiers, which are replaced by the values specified in subsequent arguments. 
+Text in the format string is copied to the output as-is.
 
 Supported format specifiers:
 .TP
@@ -43,7 +44,8 @@ If an unsupported specifier is provided, the function prints a '%' followed by t
 .SH RETURN VALUE
 The
 .B _printf
-function returns the total number of characters printed (excluding the null byte used to end output to strings).If an error occurs, such as if the
+function returns the total number of characters printed (excluding the null byte used to end output to strings).
+If an error occurs, such as if the
 .B format
 string is
 .I NULL,
@@ -56,7 +58,8 @@ Example usage of
 .PP
 .nf
 
-#include "main.h"int main(void)
+#include "main.h"
+int main(void)
 {
     _printf("Character: %c\\n", 'A':);
     _printf("String: %s\\n", "Hello, World!");
@@ -77,10 +80,15 @@ Percent: %
 .fi
 
 .SH NOTES
+
 .B _printf
-does not handle advanced formatting options, such as width, precision, or flags. Additionally, it does not support floating-point specifiers.The function relies on internal helper functions, such as
+does not handle advanced formatting options, such as width, precision, or flags. 
+Additionally, it does not support floating-point specifiers.
+The function relies on internal helper functions, such as
+
 .B write_function
 and
+
 .B write_number,
 to handle low-level output and integer formatting.
 
@@ -98,4 +106,4 @@ to handle low-level output and integer formatting.
 .SH AUTHOR
 This implementation of
 .B _printf
-was developed by Wong, Anna and Mao
+was developed by Wong, Anna and Mao from Holberton Australia
