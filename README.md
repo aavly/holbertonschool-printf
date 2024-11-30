@@ -76,12 +76,12 @@ Hello World
 example
 ```
 int i = 1;
-int j = 2; /* int i and j are both integer * /
+int j = 2; /* int i and j are both integer */
 
 char *a = "Hello";
 char *b = "World"; /* char *a and *b are both string */
 
-char c = '!'; /* char c is character a
+char c = '!'; /* char c is character */
 
 _printf("%d %s\n", i, a);
 _printf("%d %s%c", j, b, c); 
