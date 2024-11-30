@@ -4,13 +4,14 @@
 ## Custom _printf function
 
 What is _printf ?
-'''
+
 Imagine you're writing a message on a piece of paper, and you want to tell a computer exactly what to write. 
 The _printf function is like a tool that lets you tell the computer what to print out on the screen.
-'''
+
 
 ## Using _printf
-'''
+
+'''c
 _prinf("formatted text");
 '''
 "formatted text" is the message you want to print. 
