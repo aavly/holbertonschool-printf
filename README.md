@@ -1,7 +1,7 @@
-##_printf()
+# _printf()
  
-#Holberton Week 8: printf
-#Custom _printf function
+## Holberton Week 8: printf
+## Custom _printf function
 
 What is _printf ?
 '''
@@ -9,7 +9,7 @@ Imagine you're writing a message on a piece of paper, and you want to tell a com
 The _printf function is like a tool that lets you tell the computer what to print out on the screen.
 '''
 
-#Using _printf
+## Using _printf
 '''
 _prinf("formatted text");
 '''
@@ -26,7 +26,7 @@ output
 Hello World
 ''' 
 
-#Specifier option
+## Specifier option
 
 You can also pass and define the format of variables into _printf by using specifier options.
 
@@ -112,6 +112,6 @@ output
 2. World!
 '''
 
-# Summary
+## Summary
 
 _printf is a way to tell the computer what you want to see printed on the screen, whether it words or numbers. 
