@@ -20,12 +20,12 @@ The message is always inside quotes (" ").
 
 example
 
-'''
- _printf("Hello World");
-'''
+
+	_printf("Hello World");
+
 
 output
-'''
+'''bash
 Hello World
 ''' 
 
