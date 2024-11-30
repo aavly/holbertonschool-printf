@@ -49,7 +49,7 @@ char *a = "Hello";  /* where a is the variable to be passed into printf()
 _printf("%s", a)
 ```
 
-**The code inside the quote (%s) is specifier of string type and variable that that hold the value is char *a**<br>
+**The code inside the quote (%s) is specifier of string type and a is variable that that hold the value**
 
 output
 ```bash
