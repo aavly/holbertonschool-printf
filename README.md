@@ -41,7 +41,7 @@ they tell _printf the format of data type of variables that being passed into th
 **%d	integer** 
 **%i 	signed integer**
 
-###1. using _printf with specifier
+### 1. using _printf with specifier
 
 example
 ```
@@ -56,7 +56,7 @@ output
 Hello
 ```
 
-###2. using _printf with multiple specifiers
+### 2. using _printf with multiple specifiers
 
 example
 ```
@@ -71,7 +71,7 @@ output
 Hello World
 ```
 
-###3. using _printf with multiple specifiers of different data types
+### 3. using _printf with multiple specifiers of different data types
 
 example
 ```
@@ -93,7 +93,7 @@ output
 2 World!
 ```
 
-###4. using _printf with multiple specifier and formatted text
+### 4. using _printf with multiple specifier and formatted text
 
 example
 ```
@@ -114,4 +114,4 @@ output
 
 ## Summary
 
-_printf is a way to tell the computer what you want to see printed on the screen according to the format you requested. 
+_printf is a way to tell the computer what you want to see printed on the screen. 
