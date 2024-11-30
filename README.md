@@ -15,8 +15,8 @@ The _printf function is like a tool that lets you tell the computer what to prin
 _prinf("formatted text");
 ```
 
-** "formatted text" is the message you want to print. **
-** The message is always inside quotes (" "). **
+**"formatted text" is the message you want to print.**<br>
+**The message is always inside quotes (" ").**<br>
 
 example
 ```
@@ -30,13 +30,13 @@ Hello World
 
 ## Specifier option
 
-** You can also pass and define the format of variables into _printf by using specifier options. **<br>
+**You can also pass and define the format of variables into _printf by using specifier options.**<br>
 
 These four codes listed below are called specifiers and 
 they tell _printf the format of data type of variables that being passed into the _printf
 
 
-**%c 	character **<br>
+**%c 	character**<br>
 **%s	string**<br>
 **%d	integer**<br> 
 **%i 	signed integer**<br>
