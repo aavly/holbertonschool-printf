@@ -11,23 +11,22 @@ The _printf function is like a tool that lets you tell the computer what to prin
 
 ## Using _printf
 
-
-	_prinf("formatted text");
-
+```
+_prinf("formatted text");
+```
 
 "formatted text" is the message you want to print. 
 The message is always inside quotes (" "). 
 
 example
-
-
-	_printf("Hello World");
-
+```
+_printf("Hello World");
+```
 
 output
-'''bash
+```bash
 Hello World
-''' 
+```
 
 ## Specifier option
 
