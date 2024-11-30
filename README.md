@@ -30,16 +30,16 @@ Hello World
 
 ## Specifier option
 
-**You can also pass and define the format of variables into _printf by using specifier options.**<br>
+**You can also pass and define the data type of variables into _printf by using specifier options.**<br>
 
-These four codes listed below are called specifiers and 
-they tell _printf the format of data type of variables that being passed into the _printf
+Four codes listed below are called specifiers and 
+they tell _printf the data type of variables that being passed in.
 
 
 **%c	character**<br>
 **%s	string**<br>
 **%d	integer**<br>
-**%i	 signed integer**<br>
+**%i	  signed integer**<br>
 
 ### 1. using _printf with specifier
 
