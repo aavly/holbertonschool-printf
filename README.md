@@ -36,10 +36,10 @@ These four codes listed below are called specifiers and
 they tell _printf the format of data type of variables that being passed into the _printf
 
 
-**%c 	character**<br>
+**%c	character**<br>
 **%s	string**<br>
 **%d	integer**<br> 
-**%i 	signed integer**<br>
+**%i	signed integer**<br>
 
 ### 1. using _printf with specifier
 
