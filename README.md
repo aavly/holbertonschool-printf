@@ -83,8 +83,8 @@ char *b = "World"; /* char *a and *b are both string */
 
 char c = '!'; /* char c is character a
 
-printf("%d %s\n", i, a);
-printf("%d %s%c", j, b, c); 
+_printf("%d %s\n", i, a);
+_printf("%d %s%c", j, b, c); 
 ```
 
 output
@@ -103,7 +103,7 @@ char *b = "World";
 
 char c = '!'; 
 
-printf("1. Hello\n%d %s%c", j, b, c);
+_printf("1. Hello\n%d %s%c", j, b, c);
 ```
 
 output
